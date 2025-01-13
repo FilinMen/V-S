@@ -1,9 +1,10 @@
 # отображение точек из натурального ряда
+
+
 import matplotlib.pyplot as plt
 
-list_simpl_num =[1,2,3,5,7,11,13,17,19,23,29]
 list = []
-sov_num = [6,28]
+sov_num = [6,28,496,8128]
 x = list
 y = []
 x1 = []
@@ -13,6 +14,14 @@ y1 = []
 y2 = []
 y3 = []
 
+
+def is_simpl(x):#проверка числа на простое 
+    if x <= 1:
+        return False
+    for i in range(2, int(x**0.5)+1):
+        if x % i == 0:
+            return False
+    return True
 
 def listx(): #перебор элементов из списка y
     for i in y:
@@ -24,7 +33,7 @@ def sumdel(m): #подсчет суммы делителей
         b = m%l
         if b == 0:
             a += l
-        elif m in list_simpl_num:
+        elif is_simpl(m) == True:
             a = 1 
     y.append(int(a)) 
 
@@ -37,7 +46,7 @@ def color(): # распределение цветов
         i = listx()  
         q = int(q)
         i = int(i)
-        if q in list_simpl_num:#green
+        if is_simpl(q) == True:#green
             y1.append(i)
             x1.append(q)
         elif q in sov_num:#red
